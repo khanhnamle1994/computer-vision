@@ -313,9 +313,19 @@ def dropout_forward(x, dropout_param):
         # TODO: Implement training phase forward pass for inverted dropout.   #
         # Store the dropout mask in the mask variable.                        #
         #######################################################################
-        # Create mask of inactive neurons. Boost by p to avoid scaling at test time
-        mask = (np.random.rand(*x.shape)<p)/p
+        
+        # Ref on dropout: http://cs231n.github.io/neural-networks-2/
+
+        # During training randomly drop out neurons with probability P, here we create the mask that does this.
+        mask = (np.random.random_sample(x.shape) >= p)
+
+        # Inverted dropout scales the remaining neurons during training so we don't have to at test time.
+        dropout_scale_factor = 1/(1-p)
+        mask = mask*dropout_scale_factor
+
+        # Apply the dropout mask to the input.
         out = x*mask
+        
         #######################################################################
         #                           END OF YOUR CODE                          #
         #######################################################################
@@ -323,7 +333,10 @@ def dropout_forward(x, dropout_param):
         #######################################################################
         # TODO: Implement the test phase forward pass for inverted dropout.   #
         #######################################################################
+        
+        # Test time we don't drop anything so just pass input through, also scaling was done during training.
         out = x
+        
         #######################################################################
         #                            END OF YOUR CODE                         #
         #######################################################################
@@ -350,8 +363,10 @@ def dropout_backward(dout, cache):
         #######################################################################
         # TODO: Implement training phase backward pass for inverted dropout   #
         #######################################################################
-        # Stop the gradient flow through inactive neurons
-        dx = dout*mask
+        
+        # Only backprop to the neurons we didn't drop.
+        dx = dout*mask*1
+        
         #######################################################################
         #                          END OF YOUR CODE                           #
         #######################################################################
