@@ -25,4 +25,4 @@ Computer Vision has become ubiquitous in our society, with applications in searc
 ## Assignments
 * Assignment 1 ([Problem](https://github.com/khanhnamle1994/computer-vision/blob/master/Assignment-Guidelines/assignment1.md), [Solution](https://github.com/khanhnamle1994/computer-vision/tree/master/assignment1))
 * Assignment 2 ([Problem](https://github.com/khanhnamle1994/computer-vision/blob/master/Assignment-Guidelines/assignment2.md), [Solution](https://github.com/khanhnamle1994/computer-vision/tree/master/assignment2))
-* Assignment 3 (Problem, Solution)
+* Assignment 3 ([Problem](https://github.com/khanhnamle1994/computer-vision/blob/master/Assignment-Guidelines/assignment3.md), [Solution](https://github.com/khanhnamle1994/computer-vision/tree/master/assignment3))
